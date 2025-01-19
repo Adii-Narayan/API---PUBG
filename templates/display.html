@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Data</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #f9d342;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #444;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        th, td {
+            padding: 10px 15px;
+            text-align: left;
+            border: 1px solid #444;
+        }
+
+        th {
+            background-color: #333;
+            color: #f9d342;
+            font-size: 1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #222;
+        }
+
+        tr:hover {
+            background-color: #333;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>PUBG Match Data</h1>
+    {% if username %}
+        <h2>Match Data for: {{ username }}</h2>
+    {% endif %}
+    
+    {% if matches %}
+        <table>
+            <tr>
+                <th>Match ID</th>
+                <th>Mode</th>
+                <th>Map</th>
+                <th>Created At</th>
+                <th>Rank</th>
+                <th>RP</th>
+                <th>Kill Ratio</th>
+            </tr>
+            {% for match in matches %}
+            <tr>
+                <td>{{ match.id }}</td>
+                <td>{{ match.mode }}</td>
+                <td>{{ match.map }}</td>
+                <td>{{ match.created_at }}</td>
+                <td>{{ match.rank }}</td>
+                <td>{{ match.rp }}</td>
+                <td>{{ match.kill_ratio }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No matches found for the given username.</p>
+    {% endif %}
+</body>
+</html>
